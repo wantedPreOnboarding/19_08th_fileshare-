@@ -1,4 +1,4 @@
-export function formatFileSize(
+export default function formatFileSize(
   bytes: number,
   decimals = 2
 ): { unit: string; volumNum: number } {

@@ -1,4 +1,4 @@
-import { formatFileSize } from "./formatFileSize";
+import formatFileSize from "./formatFileSize";
 
 describe("formatFileSize test", () => {
   test("1KB", () => {
