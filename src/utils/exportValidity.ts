@@ -8,6 +8,8 @@ export default function exportValidity(expires_at: number) {
 
   if (gap < 0) {
     return "만료됨";
+  } else if (gapHours < 24) {
+    return `${gapMinutes}분`;
   } else if (gapHours < 48) {
     return `${gapHours}시간 ${gapMinutes}분`;
   } else {
