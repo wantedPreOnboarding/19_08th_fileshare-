@@ -1,8 +1,5 @@
-import React from "react";
-import type { ButtonHTMLAttributes } from "react";
-import { forwardRef } from "react";
+import React, { ButtonHTMLAttributes, forwardRef } from "react";
 import styled from "styled-components";
-import colors from "styles/colors";
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
   fullWidth?: boolean;
@@ -26,12 +23,12 @@ const Base = styled.button<{ fullWidth: boolean }>`
   align-items: center;
   justify-content: center;
   width: ${({ fullWidth }) => (fullWidth ? "100%" : "auto")};
-  padding: 0 16px;
   height: 48px;
+  padding: 0 16px;
   border: 0 solid transparent;
   border-radius: 8px;
-  background-color: ${colors.teal500};
-  color: ${colors.white};
+  background: ${({ theme }) => theme.colors.teal500};
+  color: ${({ theme }) => theme.colors.white};
   font-size: 20px;
   font-weight: 500;
   white-space: nowrap;
@@ -47,6 +44,6 @@ const Base = styled.button<{ fullWidth: boolean }>`
     cursor: not-allowed;
   }
   &:active {
-    background-color: ${colors.teal700};
+    background:${({ theme }) => theme.colors.teal700};
   }
 `;

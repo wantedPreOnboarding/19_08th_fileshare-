@@ -1,5 +1,4 @@
-import React from "react";
-import type { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from "react";
 import styled from "styled-components";
 
 const Container = ({ children }: PropsWithChildren<{}>) => {

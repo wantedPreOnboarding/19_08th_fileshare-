@@ -1,8 +1,7 @@
-import React from "react";
-import type { FC } from "react";
+import React, { FC } from "react";
 import styled from "styled-components";
-import colors from "styles/colors";
 import Button from "components/Button";
+import Download from 'assets/icons/download.svg';
 
 const DetailPage: FC = () => {
   return (
@@ -13,7 +12,7 @@ const DetailPage: FC = () => {
           <Url>localhost/7LF4MDLY</Url>
         </LinkInfo>
         <DownloadButton>
-          <img referrerPolicy="no-referrer" src="/svgs/download.svg" alt="" />
+          <img referrerPolicy="no-referrer" src={Download} alt="" />
           받기
         </DownloadButton>
       </Header>
@@ -51,7 +50,7 @@ const DetailPage: FC = () => {
 
 const Header = styled.header`
   display: flex;
-  color: ${colors.grey600};
+  color:${({ theme }) => theme.colors.grey600};
   margin-bottom: 32px;
 `;
 
@@ -66,7 +65,7 @@ const Title = styled.h3`
   white-space: nowrap;
   text-overflow: ellipsis;
   line-height: 28px;
-  color: ${colors.grey700};
+  color: ${({ theme }) => theme.colors.grey700};
   font-size: 20px;
 `;
 
@@ -80,7 +79,7 @@ const Url = styled.a`
   font-size: 14px;
 
   :hover {
-    color: ${colors.teal700};
+    color: ${({ theme }) => theme.colors.teal700};
   }
 `;
 
@@ -94,11 +93,11 @@ const DownloadButton = styled(Button)`
 
 const Article = styled.article`
   border-radius: 4px;
-  border-color: ${colors.grey200};
+  border-color: ${({ theme }) => theme.colors.grey200};
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   box-shadow: 0 0 0 1px rgb(0 20 61 / 8%), 0 3px 3px 0 rgb(0 20 61 / 4%);
-  background-color: ${colors.white};
-  color: ${colors.grey600};
+  background-color:${({ theme }) => theme.colors.white};
+  color:${({ theme }) => theme.colors.grey600};
   font-size: 14px;
   font-weight: 400;
 `;
@@ -129,7 +128,7 @@ const Top = styled.label`
 `;
 
 const Bottom = styled.p`
-  color: ${colors.grey700};
+  color:${({ theme }) => theme.colors.grey700};
   margin: 8px 0 24px;
 `;
 
@@ -146,7 +145,8 @@ const LinkImage = styled.div`
   align-items: center;
   border-radius: 4px;
   justify-content: center;
-  background-color: ${colors.grey50};
+  background:${({ theme }) => theme.colors.grey50};
+
 
   @media (max-width: 768px) {
     margin-bottom: 32px;
@@ -157,7 +157,7 @@ const LinkImage = styled.div`
 const Image = styled.span`
   width: 120px;
   display: inline-block;
-  background-image: url(/svgs/default.svg);
+  background-image: url(assets/icons/download.svg);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -169,29 +169,24 @@ const ListSummary = styled.div`
   justify-content: space-between;
   padding: 12px 36px;
   font-weight: 600;
-  border-top: 1px solid;
-  border-color: ${colors.grey200};
-
+  border-top: 1px solid ${({ theme }) => theme.colors.grey200};
   @media (max-width: 768px) {
     padding: 12px 24px;
   }
 `;
 
 const FileList = styled.ul`
-  border-top: 1px solid;
-  border-color: ${colors.grey200};
-  padding: 0;
-  margin: 0;
+  border-top: 1px solid ${({ theme }) => theme.colors.grey200};
   padding: 0 36px;
-  color: ${colors.grey700};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.grey700};
 
   @media (max-width: 768px) {
     padding: 0 24px;
   }
 
   & > li + li {
-    border-top: 1px solid;
-    border-color: ${colors.grey200};
+    border-top: 1px solid ${({ theme }) => theme.colors.grey200};
   }
 `;
 
@@ -214,7 +209,7 @@ const FileItemInfo = styled.div`
     height: 40px;
     margin-right: 12px;
     display: inline-block;
-    background-image: url(/svgs/default.svg);
+    background-image: url(assets/icons/download.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center center;
