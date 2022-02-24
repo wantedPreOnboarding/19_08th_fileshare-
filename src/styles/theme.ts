@@ -24,9 +24,8 @@ const colors = {
   grey900: "#212529",
 };
 
-// export type Colors = typeof colors;
-// export default colors;
 const theme = {
   colors,
 };
+
 export default theme;
