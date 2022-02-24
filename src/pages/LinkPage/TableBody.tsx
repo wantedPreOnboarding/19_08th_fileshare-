@@ -8,8 +8,11 @@ import printFilesize from "utils/printFileSize";
 import useInterval from "hooks/useInterval";
 import { dataProps } from "types/data.type";
 import { PropsWithChildren } from "types/props";
+import { sensitiveHeaders } from "http2";
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
+  const EMAILS = item.sent.emails[0];
+
   const [updateTime, setUpdateTime] = useState<number>(0);
   useInterval(() => {
     setUpdateTime(updateTime + 1);
@@ -47,7 +50,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
         <S.TableCell>
           <span>받은사람</span>
           <S.LinkReceivers>
-            <Avatar text="recruit@estmob.com" />
+            {EMAILS && <Avatar text={EMAILS} />}
           </S.LinkReceivers>
         </S.TableCell>
       </S.TableRow>
