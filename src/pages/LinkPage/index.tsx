@@ -1,8 +1,10 @@
-import React, { FC } from "react";
+import React, { FC, useState, useEffect } from "react";
+import data from "components/data.json";
+import printRemainTime from "utils/printRemainTime";
 import Avatar from "components/Avatar";
-import Default from 'assets/icons/default.svg';
+import Default from "assets/icons/default.svg";
 import styled from "styled-components";
-
+import printFilesize from "utils/printFileSize";
 
 const LinkPage: FC = () => {
   return (
@@ -19,114 +21,42 @@ const LinkPage: FC = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <TableCell>
-              <LinkInfo>
-                <LinkImage>
-                  <img
-                    referrerPolicy="no-referrer"
-                    src={Default}
-                    alt=""
-                  />
-                </LinkImage>
-                <LinkTexts>
-                  <LinkTitle>로고파일</LinkTitle>
-                  <LinkUrl>localhost/7LF4MDLY</LinkUrl>
-                </LinkTexts>
-              </LinkInfo>
-              <span />
-            </TableCell>
-            <TableCell>
-              <span>파일개수</span>
-              <span>1</span>
-            </TableCell>
-            <TableCell>
-              <span>파일사이즈</span>
-              <span>10.86KB</span>
-            </TableCell>
-            <TableCell>
-              <span>유효기간</span>
-              <span>48시간 00분</span>
-            </TableCell>
-            <TableCell>
-              <span>받은사람</span>
-              <LinkReceivers>
-                <Avatar text="recruit@estmob.com" />
-              </LinkReceivers>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <LinkInfo>
-                <LinkImage>
-                  <img
-                    referrerPolicy="no-referrer"
-                    src={Default}
-                    alt=""
-                  />
-                </LinkImage>
-                <LinkTexts>
-                  <LinkTitle>로고파일</LinkTitle>
-                  <LinkUrl>localhost/7LF4MDLY</LinkUrl>
-                </LinkTexts>
-              </LinkInfo>
-              <span />
-            </TableCell>
-            <TableCell>
-              <span>파일개수</span>
-              <span>1</span>
-            </TableCell>
-            <TableCell>
-              <span>파일사이즈</span>
-              <span>10.86KB</span>
-            </TableCell>
-            <TableCell>
-              <span>유효기간</span>
-              <span>48시간 00분</span>
-            </TableCell>
-            <TableCell>
-              <span>받은사람</span>
-              <LinkReceivers>
-                <Avatar text="recruit@estmob.com" />
-              </LinkReceivers>
-            </TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>
-              <LinkInfo>
-                <LinkImage>
-                  <img
-                    referrerPolicy="no-referrer"
-                    src={Default}
-                    alt=""
-                  />
-                </LinkImage>
-                <LinkTexts>
-                  <LinkTitle>로고파일</LinkTitle>
-                  <LinkUrl>localhost/7LF4MDLY</LinkUrl>
-                </LinkTexts>
-              </LinkInfo>
-              <span />
-            </TableCell>
-            <TableCell>
-              <span>파일개수</span>
-              <span>1</span>
-            </TableCell>
-            <TableCell>
-              <span>파일사이즈</span>
-              <span>10.86KB</span>
-            </TableCell>
-            <TableCell>
-              <span>유효기간</span>
-              <span>48시간 00분</span>
-            </TableCell>
-            <TableCell>
-              <span>받은사람</span>
-              <LinkReceivers>
-                <Avatar text="recruit@estmob.com" />
-              </LinkReceivers>
-            </TableCell>
-          </TableRow>
+          {data.map((item) => {
+            return (
+              <TableRow key={item.key}>
+                <TableCell>
+                  <LinkInfo>
+                    <LinkImage>
+                      <img referrerPolicy="no-referrer" src={Default} alt="" />
+                    </LinkImage>
+                    <LinkTexts>
+                      <LinkTitle>{item.sent.subject}</LinkTitle>
+                      <LinkUrl>localhost/{item.key}</LinkUrl>
+                    </LinkTexts>
+                  </LinkInfo>
+                  <span />
+                </TableCell>
+                <TableCell>
+                  <span>파일개수</span>
+                  <span>{item.count}</span>
+                </TableCell>
+                <TableCell>
+                  <span>파일사이즈</span>
+                  <span>{printFilesize(item.size)}</span>
+                </TableCell>
+                <TableCell>
+                  <span>유효기간</span>
+                  <span>{printRemainTime(item.expires_at)}</span>
+                </TableCell>
+                <TableCell>
+                  <span>받은사람</span>
+                  <LinkReceivers>
+                    <Avatar text="recruit@estmob.com" />
+                  </LinkReceivers>
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
     </>
@@ -153,7 +83,7 @@ const Table = styled.table`
   border-color: inherit;
   border-collapse: collapse;
   border-spacing: 0px;
-  color:${({ theme }) => theme.colors.grey600};
+  color: ${({ theme }) => theme.colors.grey600};
 `;
 
 const TableHead = styled.thead`
@@ -175,7 +105,7 @@ const TableBody = styled.tbody`
       position: relative;
       box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.07);
       margin-bottom: 30px;
-      background-color:${({ theme }) => theme.colors.white};
+      background-color: ${({ theme }) => theme.colors.white};
       border-radius: 4px;
       padding: 0px 20px 20px 20px;
     }
@@ -261,7 +191,6 @@ const LinkTitle = styled.p`
   font-size: 16px;
   font-weight: 500;
   color: ${({ theme }) => theme.colors.grey700};
-
 `;
 
 const LinkUrl = styled.a`
@@ -269,7 +198,6 @@ const LinkUrl = styled.a`
 
   :hover {
     color: ${({ theme }) => theme.colors.teal700};
-
   }
 `;
 
