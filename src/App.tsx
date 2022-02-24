@@ -1,18 +1,21 @@
 import React from "react";
-import Container from "components/Container";
 import DetailPage from "pages/DetailPage";
 import LinkPage from "pages/LinkPage";
 import { ThemeProvider } from "styled-components";
+import Container from "components/Container";
 import GlobalStyle from "styles/GlobalStyle";
+import theme from "styles/theme";
 
-function App() {
+const App = () => {
   return (
     <>
-      <GlobalStyle />
-      <Container>
-        <LinkPage />
-        <DetailPage />
-      </Container>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Container>
+          <LinkPage />
+          <DetailPage />
+        </Container>
+      </ThemeProvider>
     </>
   );
 }
