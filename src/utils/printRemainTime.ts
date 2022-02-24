@@ -1,4 +1,4 @@
-export default function exportValidity(expires_at: number) {
+export default function printRemainTime(expires_at: number) {
   const expire = new Date(expires_at * 1000);
   const current = new Date();
   const gap = expire.getTime() - current.getTime();
