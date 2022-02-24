@@ -1,6 +1,7 @@
 import React, { FC } from "react";
-import * as S from "./index.style";
 import TableBody from "./TableBody";
+import data from "components/data.json";
+import * as S from "./index.style";
 
 const LinkPage: FC = () => {
   return (
@@ -16,7 +17,9 @@ const LinkPage: FC = () => {
             <S.TableCell>받은사람</S.TableCell>
           </S.TableRow>
         </S.TableHead>
-        <TableBody />
+        {data.map((item) => {
+          return <TableBody item={item} />;
+        })}
       </S.Table>
     </>
   );
