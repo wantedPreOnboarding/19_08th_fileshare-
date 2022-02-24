@@ -18,7 +18,7 @@ const LinkPage: FC = () => {
           </S.TableRow>
         </S.TableHead>
         {data.map((item) => {
-          return <TableBody item={item} />;
+          return <TableBody key={item.key} item={item} />;
         })}
       </S.Table>
     </>
