@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import printRemainTime from "utils/printRemainTime";
 import Avatar from "components/Avatar";
@@ -6,8 +6,10 @@ import Default from "assets/icons/default.svg";
 import * as S from "./index.style";
 import printFilesize from "utils/printFileSize";
 import useInterval from "hooks/useInterval";
+import { dataProps } from "types/data.type";
+import { PropsWithChildren } from "types/props";
 
-const TableBody: FC = ({ item }: any) => {
+const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   const [updateTime, setUpdateTime] = useState<number>(0);
   useInterval(() => {
     setUpdateTime(updateTime + 1);
