@@ -3,8 +3,11 @@ import DetailPage from "pages/DetailPage";
 import LinkPage from "pages/LinkPage";
 import Container from "components/Container";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+// redux
 import { useAppDispatch, useAppSelector } from "hooks/useStore";
 import { loadFileList } from "redux/slices/fileList";
+import * as selector from "redux/selectors";
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -13,7 +16,9 @@ const App = () => {
     dispatch(loadFileList());
   }, []);
 
-  const data = useAppSelector((state) => state.fileList);
+  const datas = useAppSelector((state) => state.fileList);
+  const data = useAppSelector(selector.selectAllFiles);
+  const file = useAppSelector(selector.fileSelectorById("7725NJHW"));
 
   return (
     <BrowserRouter>

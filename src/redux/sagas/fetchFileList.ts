@@ -1,9 +1,8 @@
-import { call, CallEffect, put } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import { get } from "apis/requestAPIs/fileList";
 import { successFileList, errorFileList } from "../slices/fileList";
 import { FilesAPI } from "apis/models/fileList";
 import { arrayToObject } from "redux/utils/arrayToObject";
-import axios, { AxiosError } from "axios";
 
 export default function* fetchFileList() {
   try {

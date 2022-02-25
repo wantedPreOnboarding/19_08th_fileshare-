@@ -1,4 +1,4 @@
-export type OptionsFlags<T> = {
+export type toObject<T> = {
   [Property: string]: T;
 };
 
@@ -7,7 +7,7 @@ export const arrayToObject = <T>(data: T[], key: keyof T) => {
     throw new Error("key must be a string");
   }
 
-  const result: OptionsFlags<T> = data.reduce(
+  const result: toObject<T> = data.reduce(
     (acc, item) => ({ ...acc, [`${item[key]}`]: item }),
     {}
   );
