@@ -36,7 +36,8 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
             <S.LinkTexts>
               <S.LinkTitle>{item.sent.subject}</S.LinkTitle>
               <S.LinkUrl
-                onClick={() => {
+                onClick={(event) => {
+                  event.stopPropagation();
                   if (
                     new Date(item.expires_at * 1000).getTime() -
                       new Date().getTime() >
