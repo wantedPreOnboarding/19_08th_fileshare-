@@ -4,10 +4,9 @@ import * as S from "./index.style"
 import Download from 'assets/icons/download.svg';
 import { useParams } from "react-router";
 import datas from "components/data.json";
-import formatDate from "utils/formatDate";
-import formatBytes from "utils/formatBytes"
-import printRemainTime from "utils/printRemainTime"
+import {printFileSize,formatDate,printRemainTime} from "utils"
 import imageDefault from "assets/icons/default.svg"
+
 const DetailPage: FC = () => {
   const { id } = useParams();
   const index= datas.findIndex(data=>data.key===id)
@@ -26,7 +25,8 @@ const DetailPage: FC = () => {
       <S.Header>
         <S.LinkInfo>
           <S.Title>{data.summary}</S.Title>
-          <S.Url>{data.thumbnailUrl}</S.Url>
+          {isExpired?
+          <S.Url isExpired={isExpired}>{data.thumbnailUrl}</S.Url>:<S.Url href={data.thumbnailUrl}isExpired={isExpired} >{data.thumbnailUrl}</S.Url>}
         </S.LinkInfo>
         {!isExpired?
         <S.DownloadButton onClick={sendBtnHandler} >  
@@ -50,7 +50,7 @@ const DetailPage: FC = () => {
         {!isExpired && <>
         <S.ListSummary>
           <div>총 {data.count}개의 파일</div>
-          <div>{formatBytes(data.size)}</div>
+          <div>{printFileSize(data.size)}</div>
         </S.ListSummary>
         <S.FileList >
           {data.files&&data.files.map(file=>{
@@ -60,7 +60,7 @@ const DetailPage: FC = () => {
               <S.FileItemImage thumbnailUrl={checkImage(file.thumbnailUrl)} />
               <span>{file.name}</span>
             </S.FileItemInfo>
-            <S.FileItemSize>{formatBytes(file.size)}</S.FileItemSize>
+            <S.FileItemSize>{printFileSize(file.size)}</S.FileItemSize>
           </S.FileListItem>)})}
         </S.FileList></>}
       </S.Article>

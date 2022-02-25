@@ -1,3 +1,4 @@
 export interface thumbnailUrlProps {
-      thumbnailUrl: string;
+      thumbnailUrl?: string;
+      isExpired?:boolean;
   }
