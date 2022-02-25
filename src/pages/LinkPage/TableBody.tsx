@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Avatar from "components/Avatar";
 import Default from "assets/icons/default.svg";
 import * as S from "./index.style";
-import printFilesize from "utils/printFileSize";
+import {printFileSize} from "utils";
 import useInterval from "hooks/useInterval";
 import { dataProps } from "types/data.type";
 import { PropsWithChildren } from "types/props";
@@ -12,7 +12,7 @@ import inputClipBoard from "utils/inputClipboard";
 import printFilteredUrl from "utils/printFilteredUrl";
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
-  const EMAILS = item.sent.emails[0];
+  const EMAILS = item.sent?.emails[0];
   const navigate = useNavigate();
 
   const [updateTime, setUpdateTime] = useState<number>(0);
@@ -34,7 +34,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
               <img referrerPolicy="no-referrer" src={Default} alt="" />
             </S.LinkImage>
             <S.LinkTexts>
-              <S.LinkTitle>{item.sent.subject}</S.LinkTitle>
+              <S.LinkTitle>{item.summary}</S.LinkTitle>
               <S.LinkUrl
                 onClick={(event) => {
                   event.stopPropagation();
@@ -59,7 +59,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
         </S.TableCell>
         <S.TableCell>
           <span>파일사이즈</span>
-          <span>{printFilesize(item.size)}</span>
+          <span>{printFileSize(item.size)}</span>
         </S.TableCell>
         <S.TableCell>
           <span>유효기간</span>
