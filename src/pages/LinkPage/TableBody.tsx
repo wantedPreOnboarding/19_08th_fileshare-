@@ -9,6 +9,7 @@ import useInterval from "hooks/useInterval";
 import { dataProps } from "types/data.type";
 import { PropsWithChildren } from "types/props";
 import inputClipBoard from "utils/inputClipboard";
+import printFilteredUrl from "utils/printFilteredUrl";
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   const EMAILS = item.sent.emails[0];
@@ -39,7 +40,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
                   inputClipBoard(`http://localhost/${item.key}`);
                 }}
               >
-                localhost/{item.key}
+                {printFilteredUrl(item.key, item.expires_at)}
               </S.LinkUrl>
             </S.LinkTexts>
           </S.LinkInfo>
