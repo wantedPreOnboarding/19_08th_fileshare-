@@ -20,6 +20,8 @@ const App = () => {
   const data = useAppSelector(selector.selectAllFiles);
   const file = useAppSelector(selector.fileSelectorById("7725NJHW"));
 
+  console.log(file, "root");
+
   return (
     <BrowserRouter>
       <Container>

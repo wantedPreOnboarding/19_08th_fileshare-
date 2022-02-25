@@ -1,11 +1,17 @@
 import React, { FC } from "react";
 import styled from "styled-components";
 import Button from "components/Button";
-import Download from 'assets/icons/download.svg';
+import Download from "assets/icons/download.svg";
 import { useParams } from "react-router";
+
+import { useAppSelector } from "hooks/useStore";
+import * as selector from "redux/selectors";
 
 const DetailPage: FC = () => {
   const { id } = useParams();
+  const file = id && useAppSelector(selector.fileSelectorById(id));
+
+  console.log(file);
   return (
     <>
       <Header>
@@ -52,7 +58,7 @@ const DetailPage: FC = () => {
 
 const Header = styled.header`
   display: flex;
-  color:${({ theme }) => theme.colors.grey600};
+  color: ${({ theme }) => theme.colors.grey600};
   margin-bottom: 32px;
 `;
 
@@ -98,8 +104,8 @@ const Article = styled.article`
   border-color: ${({ theme }) => theme.colors.grey200};
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   box-shadow: 0 0 0 1px rgb(0 20 61 / 8%), 0 3px 3px 0 rgb(0 20 61 / 4%);
-  background-color:${({ theme }) => theme.colors.white};
-  color:${({ theme }) => theme.colors.grey600};
+  background-color: ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.grey600};
   font-size: 14px;
   font-weight: 400;
 `;
@@ -130,7 +136,7 @@ const Top = styled.label`
 `;
 
 const Bottom = styled.p`
-  color:${({ theme }) => theme.colors.grey700};
+  color: ${({ theme }) => theme.colors.grey700};
   margin: 8px 0 24px;
 `;
 
@@ -147,8 +153,7 @@ const LinkImage = styled.div`
   align-items: center;
   border-radius: 4px;
   justify-content: center;
-  background:${({ theme }) => theme.colors.grey50};
-
+  background: ${({ theme }) => theme.colors.grey50};
 
   @media (max-width: 768px) {
     margin-bottom: 32px;
