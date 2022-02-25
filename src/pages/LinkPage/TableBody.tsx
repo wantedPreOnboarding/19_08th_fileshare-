@@ -37,7 +37,13 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
               <S.LinkTitle>{item.sent.subject}</S.LinkTitle>
               <S.LinkUrl
                 onClick={() => {
-                  inputClipBoard(`http://localhost/${item.key}`);
+                  if (
+                    new Date(item.expires_at * 1000).getTime() -
+                      new Date().getTime() >
+                    0
+                  ) {
+                    inputClipBoard(`http://localhost/${item.key}`);
+                  }
                 }}
               >
                 {printFilteredUrl(item.key, item.expires_at)}
