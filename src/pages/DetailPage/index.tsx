@@ -2,8 +2,10 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import Button from "components/Button";
 import Download from 'assets/icons/download.svg';
+import { useParams } from "react-router";
 
 const DetailPage: FC = () => {
+  const { id } = useParams();
   return (
     <>
       <Header>
