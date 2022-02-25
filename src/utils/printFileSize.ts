@@ -1,8 +1,8 @@
 import commaNumber from "./commaNumber";
 import formatFileSize from "./formatFileSize";
 
-export default function filterFilesize(bytes: number): string {
+export default function printFilesize(bytes: number): string {
   const formatSize = formatFileSize(bytes);
   const commaSize = commaNumber(formatSize.volumNum);
-  return `${formatSize} ${commaSize}`;
+  return `${commaSize} ${formatSize.unit}`;
 }
