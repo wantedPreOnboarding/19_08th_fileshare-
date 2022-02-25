@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import printRemainTime from "utils/printRemainTime";
+import { useNavigate } from "react-router-dom";
 import Avatar from "components/Avatar";
 import Default from "assets/icons/default.svg";
 import * as S from "./index.style";
@@ -8,11 +8,11 @@ import printFilesize from "utils/printFileSize";
 import useInterval from "hooks/useInterval";
 import { dataProps } from "types/data.type";
 import { PropsWithChildren } from "types/props";
-import { sensitiveHeaders } from "http2";
 import inputClipBoard from "utils/inputClipboard";
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   const EMAILS = item.sent.emails[0];
+  const navigate = useNavigate();
 
   const [updateTime, setUpdateTime] = useState<number>(0);
   useInterval(() => {
@@ -20,7 +20,12 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   }, 60000);
 
   return (
-    <S.TableBody>
+    <S.TableBody
+      role="button"
+      onClick={() => {
+        navigate(`/${item.key}`);
+      }}
+    >
       <S.TableRow>
         <S.TableCell>
           <S.LinkInfo>
