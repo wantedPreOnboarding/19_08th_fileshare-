@@ -24,23 +24,22 @@ export const Title = styled.h3`
   line-height: 28px;
   color: ${({ theme }) => theme.colors.grey700};
   font-size: 20px;
-  
 `;
 
-export const Url = styled.a`
+export const Url = styled.a<thumbnailUrlProps>`
   overflow: hidden;
   display: block;
   white-space: nowrap;
   word-break: break-all;
   text-overflow: ellipsis;
   margin: 0;
-  cursor: pointer;
+  cursor: ${props => props.isExpired? "not-allowed":"pointer"};
   text-decoration: underline;
   width:100%;
   line-height: 20px;
   font-size: 14px;
   :hover {
-    color: ${({ theme }) => theme.colors.teal700};
+    color: ${({ theme }) => props =>!props.isExpired&&theme.colors.teal700};
   }
 `;
 
@@ -118,7 +117,7 @@ export const LinkImage = styled.div`
 export const Image = styled.span<thumbnailUrlProps>`
   width: 100%;
   display: inline-block;
-  background-image:   ${props => `url(${props.thumbnailUrl})`};
+  background-image:  ${props => `url(${props.thumbnailUrl})`};
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
