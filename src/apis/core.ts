@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 
-const instance = axios.create();
+const instance = axios.create({ baseURL: process.env.REACT_APP_API_URL });
 
 const responseBody = <T>(response: AxiosResponse<T>) => response.data;
 
