@@ -9,6 +9,7 @@ import useInterval from "hooks/useInterval";
 import { dataProps } from "types/data.type";
 import { PropsWithChildren } from "types/props";
 import { sensitiveHeaders } from "http2";
+import inputClipBoard from "utils/inputClipboard";
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   const EMAILS = item.sent.emails[0];
@@ -28,7 +29,13 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
             </S.LinkImage>
             <S.LinkTexts>
               <S.LinkTitle>{item.sent.subject}</S.LinkTitle>
-              <S.LinkUrl>localhost/{item.key}</S.LinkUrl>
+              <S.LinkUrl
+                onClick={() => {
+                  inputClipBoard(`http://localhost/${item.key}`);
+                }}
+              >
+                localhost/{item.key}
+              </S.LinkUrl>
             </S.LinkTexts>
           </S.LinkInfo>
           <span />
