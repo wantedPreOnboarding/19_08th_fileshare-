@@ -128,7 +128,8 @@ export const LinkTitle = styled.p`
   color: ${({ theme }) => theme.colors.grey700};
 `;
 
-export const LinkUrl = styled.a`
+export const LinkUrl = styled.button`
+  all: unset;
   text-decoration: underline;
 
   :hover {
