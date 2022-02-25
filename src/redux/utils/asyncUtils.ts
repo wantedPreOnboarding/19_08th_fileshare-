@@ -1,28 +1,22 @@
-interface Async<T> {
-  loading: boolean;
-  data: T | null;
-  error: T | null;
-}
-
 export const toAsyncType = {
-  initial: <T>(initialData = null): Async<T> => ({
+  initial: <T>(initialData: T | null = null) => ({
     loading: true,
     data: initialData,
-    error: null,
+    error: false,
   }),
-  loading: <T>(prevState = null): Async<T> => ({
+  loading: <T>(prevState: T | null = null) => ({
     loading: true,
     data: prevState,
-    error: null,
+    error: false,
   }),
-  success: <T>(payload: T): Async<T> => ({
+  success: <T>(payload: T) => ({
     loading: false,
     data: payload,
-    error: null,
+    error: false,
   }),
-  error: <T>(error: T): Async<T> => ({
+  error: () => ({
     loading: false,
     data: null,
-    error: error,
+    error: true,
   }),
 };
