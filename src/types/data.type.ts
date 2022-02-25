@@ -14,7 +14,7 @@ export interface dataProps {
       name: string;
       size: number;
     }[];
-    sent: {
+    sent?: {
       subject: string;
       content: string;
       emails: string[];
