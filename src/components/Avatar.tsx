@@ -1,7 +1,5 @@
-import React from "react";
-import type { HTMLAttributes } from "react";
+import React, { HTMLAttributes } from "react";
 import styled from "styled-components";
-import colors from "styles/colors";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   text: string;
@@ -32,8 +30,8 @@ const Base = styled.div`
 `;
 
 const Text = styled.span`
-  color: ${colors.white};
-  background-color: ${colors.teal500};
+  color: ${({ theme }) => theme.colors.white};
+  background:${({ theme }) => theme.colors.teal500};
   border-radius: 100%;
   text-align: center;
   width: 100%;

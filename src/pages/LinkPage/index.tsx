@@ -1,8 +1,8 @@
-import React from "react";
-import type { FC } from "react";
+import React, { FC } from "react";
 import Avatar from "components/Avatar";
+import Default from 'assets/icons/default.svg';
 import styled from "styled-components";
-import colors from "styles/colors";
+
 
 const LinkPage: FC = () => {
   return (
@@ -25,7 +25,7 @@ const LinkPage: FC = () => {
                 <LinkImage>
                   <img
                     referrerPolicy="no-referrer"
-                    src="/svgs/default.svg"
+                    src={Default}
                     alt=""
                   />
                 </LinkImage>
@@ -61,7 +61,7 @@ const LinkPage: FC = () => {
                 <LinkImage>
                   <img
                     referrerPolicy="no-referrer"
-                    src="/svgs/default.svg"
+                    src={Default}
                     alt=""
                   />
                 </LinkImage>
@@ -97,7 +97,7 @@ const LinkPage: FC = () => {
                 <LinkImage>
                   <img
                     referrerPolicy="no-referrer"
-                    src="/svgs/default.svg"
+                    src={Default}
                     alt=""
                   />
                 </LinkImage>
@@ -136,7 +136,7 @@ const LinkPage: FC = () => {
 export default LinkPage;
 
 const Title = styled.h2`
-  color: ${colors.grey700};
+  color: ${({ theme }) => theme.colors.grey700};
   letter-spacing: -0.62px;
   word-break: keep-all;
   margin: 0;
@@ -153,7 +153,7 @@ const Table = styled.table`
   border-color: inherit;
   border-collapse: collapse;
   border-spacing: 0px;
-  color: ${colors.grey600};
+  color:${({ theme }) => theme.colors.grey600};
 `;
 
 const TableHead = styled.thead`
@@ -175,7 +175,7 @@ const TableBody = styled.tbody`
       position: relative;
       box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.07);
       margin-bottom: 30px;
-      background-color: ${colors.white};
+      background-color:${({ theme }) => theme.colors.white};
       border-radius: 4px;
       padding: 0px 20px 20px 20px;
     }
@@ -192,8 +192,7 @@ const TableBody = styled.tbody`
       width: 100%;
       border-bottom: none;
       padding: 20px 0;
-      border-top: 1px solid;
-      border-color: ${colors.grey200};
+      border-top: 1px solid ${({ theme }) => theme.colors.grey200};
       display: flex;
       justify-content: space-between;
 
@@ -226,7 +225,7 @@ const TableCell = styled.th`
   line-height: 24px;
   display: table-cell;
   vertical-align: inherit;
-  border-bottom: 1px solid ${colors.grey300};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey300};
   text-align: left;
   padding: 16px;
 `;
@@ -261,14 +260,16 @@ const LinkTexts = styled.div`
 const LinkTitle = styled.p`
   font-size: 16px;
   font-weight: 500;
-  color: ${colors.grey700};
+  color: ${({ theme }) => theme.colors.grey700};
+
 `;
 
 const LinkUrl = styled.a`
   text-decoration: underline;
 
   :hover {
-    color: ${colors.teal700};
+    color: ${({ theme }) => theme.colors.teal700};
+
   }
 `;
 
