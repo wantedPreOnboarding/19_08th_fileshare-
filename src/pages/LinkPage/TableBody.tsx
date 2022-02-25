@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import printRemainTime from "utils/printRemainTime";
 import { useNavigate } from "react-router-dom";
+import {
+  printRemainTime,
+  inputClipBoard,
+  printFilteredUrl,
+  printFileSize,
+} from "utils";
+import { dataProps } from "types/data.type";
+import { PropsWithChildren } from "types/props";
+import useInterval from "hooks/useInterval";
 import Avatar from "components/Avatar";
 import Default from "assets/icons/default.svg";
 import * as S from "./index.style";
-import printFilesize from "utils/printFileSize";
-import useInterval from "hooks/useInterval";
-import { dataProps } from "types/data.type";
-import { PropsWithChildren } from "types/props";
-import inputClipBoard from "utils/inputClipboard";
-import printFilteredUrl from "utils/printFilteredUrl";
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   const EMAILS = item.sent.emails[0];
@@ -59,7 +61,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
         </S.TableCell>
         <S.TableCell>
           <span>파일사이즈</span>
-          <span>{printFilesize(item.size)}</span>
+          <span>{printFileSize(item.size)}</span>
         </S.TableCell>
         <S.TableCell>
           <span>유효기간</span>
