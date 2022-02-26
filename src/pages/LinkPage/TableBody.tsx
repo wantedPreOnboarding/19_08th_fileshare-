@@ -17,13 +17,19 @@ import {
 import { dataProps } from "types/data.type";
 import { PropsWithChildren } from "types/props";
 
+import { useAppDispatch } from "hooks/useStore";
+import { addToast } from "redux/slices/toasts";
+
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
-  const EMAILS = item.sent?.emails[0];
+  const EMAILS = item.sent?.emails;
   const URL_ADDRESS = "http://localhost";
   const navigate = useNavigate();
 
   const [updateTime, setUpdateTime] = useState<number>(0);
   const [expiration, setExpiration] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
+
   useInterval(() => {
     setUpdateTime(updateTime + 1);
   }, 60000);
@@ -59,6 +65,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
                 onClick={(event) => {
                   event.stopPropagation();
                   expiration && copyClipboard(`${URL_ADDRESS}${item.key}`);
+                  expiration && dispatch(addToast("Copied"));
                 }}
               >
                 {printFilteredUrl(item.key, item.expires_at)}
@@ -84,7 +91,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
         <S.TableCell>
           <span>받은사람</span>
           <S.LinkReceivers>
-            {EMAILS && <Avatar text={EMAILS} />}
+            {EMAILS && <Avatar emails={EMAILS} />}
           </S.LinkReceivers>
         </S.TableCell>
       </S.TableRow>
