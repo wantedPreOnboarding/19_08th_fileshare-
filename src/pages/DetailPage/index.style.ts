@@ -43,13 +43,28 @@ export const Url = styled.a<thumbnailUrlProps>`
   }
 `;
 
+export const BtnGroup=styled.div`
+display:flex;
+align-items:center;
+
+`
+
 export const DownloadButton = styled(Button)`
   font-size: 16px;
   cursor:pointer;
+  margin-right:5px;
   img {
     margin-right: 8px;
   }
 `;
+
+export const DeleteButton= styled(Button)`
+  font-size: 16px;
+  cursor:pointer;
+  span{
+    width:20px;
+  }
+`
 
 export const Article = styled.article`
   border-radius: 4px;
