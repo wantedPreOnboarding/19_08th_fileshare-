@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 //styles
 import Avatar from "components/Avatar";
-import Default from "assets/icons/default.svg";
 import * as S from "./index.style";
 import useInterval from "hooks/useInterval";
 //router
@@ -19,7 +18,6 @@ import { PropsWithChildren } from "types/props";
 
 import { useAppDispatch } from "hooks/useStore";
 import { addToast } from "redux/slices/toasts";
-import { add } from "date-fns";
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   const EMAILS = item.sent?.emails;
@@ -53,7 +51,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
         <S.TableCell>
           <S.LinkInfo>
             <S.LinkImage>
-              <img referrerPolicy="no-referrer" src={Default} alt="" />
+              <S.Thumbnail thumbnailUrl={item.thumbnailUrl} />
             </S.LinkImage>
             <S.LinkTexts>
               <S.LinkTitle>{item.summary}</S.LinkTitle>

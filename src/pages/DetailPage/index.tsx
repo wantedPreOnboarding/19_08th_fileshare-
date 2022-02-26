@@ -2,7 +2,6 @@ import React, { FC } from "react";
 //icons&styles
 import * as S from "./index.style";
 import Download from "assets/icons/download.svg";
-import imageDefault from "assets/icons/default.svg";
 import { ReactComponent as Delete }  from "assets/icons/trash.svg";
 //utils
 import { printFileSize, formatDate, printRemainTime } from "utils";
@@ -23,10 +22,6 @@ const DetailPage: FC = () => {
 
   const isExpired =
     file&&printRemainTime(file.expires_at) === "만료됨" ? true : false;
-
-  const checkImage = (path: string) => {
-    return path.substring(path.length - 3) !== "svg" ? path : imageDefault;
-  };
 
   const sendBtnHandler = () => {
     alert("성공적으로 다운로드가 됐습니다! ");
@@ -80,7 +75,7 @@ const DetailPage: FC = () => {
             <S.Bottom>{file.download_count}</S.Bottom>
           </S.Texts>
           <S.LinkImage>
-            <S.Image thumbnailUrl={checkImage(file.thumbnailUrl)} />
+            <S.Image thumbnailUrl={file.thumbnailUrl} />
           </S.LinkImage>
         </S.Descrition>
         {!isExpired && (
@@ -96,7 +91,7 @@ const DetailPage: FC = () => {
                     <S.FileListItem key={file.key}>
                       <S.FileItemInfo>
                         <S.FileItemImage
-                          thumbnailUrl={checkImage(file.thumbnailUrl)}
+                          thumbnailUrl={file.thumbnailUrl}
                         />
                         <span>{file.name}</span>
                       </S.FileItemInfo>
