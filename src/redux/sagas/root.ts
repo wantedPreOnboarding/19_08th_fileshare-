@@ -1,8 +1,8 @@
-import { all, call } from "redux-saga/effects";
-import fetchFileList from "./fetchFileList";
+import { all, fork } from "redux-saga/effects";
+import watchFetch from "./fetchFileList";
 
 function* rootSaga() {
-  yield all([call(fetchFileList)]);
+  yield all([fork(watchFetch)]);
 }
 
 export default rootSaga;
