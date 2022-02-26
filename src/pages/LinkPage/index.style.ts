@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "styles/theme";
 
 export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.grey700};
@@ -128,12 +129,12 @@ export const LinkTitle = styled.p`
   color: ${({ theme }) => theme.colors.grey700};
 `;
 
-export const LinkUrl = styled.button`
+export const LinkUrl = styled.button<{ expiration: boolean }>`
   all: unset;
-  text-decoration: underline;
-
+  text-decoration: ${(props) => (props.expiration ? `underline` : `none`)};
+  cursor: ${(props) => (props.expiration ? `pointer` : `not-allowed`)};
   :hover {
-    color: ${({ theme }) => theme.colors.teal700};
+    color: ${(props) => props.expiration && theme.colors.teal700};
   }
 `;
 
