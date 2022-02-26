@@ -28,6 +28,6 @@ const fileListSlice = createSlice({
   },
 });
 
-export const { loadFileList, successFileList, errorFileList } =
+export const { loadFileList, successFileList, errorFileList,deleteFile} =
   fileListSlice.actions;
 export default fileListSlice.reducer;
