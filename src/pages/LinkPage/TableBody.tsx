@@ -17,8 +17,6 @@ import {
 import { dataProps } from "types/data.type";
 import { PropsWithChildren } from "types/props";
 
-
-
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   const EMAILS = item.sent?.emails[0];
   const URL_ADDRESS = "http://localhost";
@@ -48,7 +46,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
         <S.TableCell>
           <S.LinkInfo>
             <S.LinkImage>
-              <img referrerPolicy="no-referrer" src={Default} alt="" />
+              <S.Thumbnail thumbnailUrl={item.thumbnailUrl} />
             </S.LinkImage>
             <S.LinkTexts>
               <S.LinkTitle>{item.summary}</S.LinkTitle>

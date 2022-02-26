@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "components/Button";
 import {thumbnailUrlProps} from "./index.type"
+import imageDefault from "assets/icons/default.svg";
 
 export const Header = styled.header`
   display: flex;
@@ -44,9 +45,8 @@ export const Url = styled.a<thumbnailUrlProps>`
 `;
 
 export const BtnGroup=styled.div`
-display:flex;
-align-items:center;
-
+  display:flex;
+  align-items:center;
 `
 
 export const DownloadButton = styled(Button)`
@@ -132,7 +132,7 @@ export const LinkImage = styled.div`
 export const Image = styled.span<thumbnailUrlProps>`
   width: 100%;
   display: inline-block;
-  background-image:  ${props => `url(${props.thumbnailUrl})`};
+  background-image: ${props => `url(${props.thumbnailUrl})`},url(${imageDefault});
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center center;
@@ -173,7 +173,7 @@ export const FileListItem = styled.li`
 `;
 
 export const FileItemImage = styled.span<thumbnailUrlProps>`
-    background-image: ${props => `url(${props.thumbnailUrl})`};
+    background-image: ${props => `url(${props.thumbnailUrl})`},url(${imageDefault});
     width: 40px;
     height: 40px;
     min-width:40px;
