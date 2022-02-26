@@ -10,11 +10,11 @@ import { loadFileList } from "redux/slices/fileList";
 import * as selector from "redux/selectors";
 
 const App = () => {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(loadFileList());
-  }, []);
+  // useEffect(() => {
+  //   dispatch(loadFileList());
+  // }, []);
 
   const datas = useAppSelector((state) => state.fileList);
   const data = useAppSelector(selector.selectAllFiles);
