@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import {
-  printRemainTime,
-  inputClipboard,
-  printFilteredUrl,
-  printFileSize,
-} from "utils";
-import { dataProps } from "types/data.type";
-import { PropsWithChildren } from "types/props";
-import useInterval from "hooks/useInterval";
+//styles
 import Avatar from "components/Avatar";
 import Default from "assets/icons/default.svg";
 import * as S from "./index.style";
+import useInterval from "hooks/useInterval";
+//router
+import { useNavigate } from "react-router-dom";
+//utils
+import {
+  printRemainTime,
+  copyClipboard,
+  printFilteredUrl,
+  printFileSize,
+} from "utils";
+//types
+import { dataProps } from "types/data.type";
+import { PropsWithChildren } from "types/props";
+
+
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
   const EMAILS = item.sent?.emails[0];
@@ -50,7 +56,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
                 expiration={expiration}
                 onClick={(event) => {
                   event.stopPropagation();
-                  expiration && inputClipboard(`${URL_ADDRESS}${item.key}`);
+                  expiration && copyClipboard(`${URL_ADDRESS}${item.key}`);
                 }}
               >
                 {printFilteredUrl(item.key, item.expires_at)}
