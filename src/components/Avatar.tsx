@@ -2,14 +2,30 @@ import React, { HTMLAttributes } from "react";
 import styled from "styled-components";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
-  text: string;
+  emails: string[];
 }
 
-const Avatar = ({ text, ...rest }: Props) => {
+const Avatar = ({ emails, ...rest }: Props) => {
   return (
-    <Base {...rest}>
-      <Text data-text={text}>{text.substring(0, 1)}</Text>
-    </Base>
+    <>
+      {emails &&
+        emails.map((item, index) => {
+          return (
+            <>
+              {index < 5 && (
+                <>
+                  <Base key={index} {...rest}>
+                    <Text num={index} data-text={item}>
+                      {item.substring(0, 1)}
+                    </Text>
+                  </Base>
+                </>
+              )}
+            </>
+          );
+        })}
+      <span>{emails.length > 5 ? `+${emails.length - 5}` : ""}</span>
+    </>
   );
 };
 
@@ -27,11 +43,15 @@ const Base = styled.div`
   font-weight: 700;
   text-transform: uppercase;
   line-height: 24px;
+  & + div {
+    margin-left: -8px;
+  }
 `;
 
-const Text = styled.span`
+const Text = styled.span<{ num: number }>`
   color: ${({ theme }) => theme.colors.white};
-  background:${({ theme }) => theme.colors.teal500};
+  /* background: ${({ theme }) => theme.colors.teal500}; */
+  background: #${(props) => Math.round(Math.random() * 0xffffff).toString(16)};
   border-radius: 100%;
   text-align: center;
   width: 100%;
