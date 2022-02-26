@@ -14,7 +14,7 @@ import Default from "assets/icons/default.svg";
 import * as S from "./index.style";
 
 const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
-  const EMAILS = item.sent?.emails[0];
+  const EMAILS = item.sent?.emails;
   const URL_ADDRESS = "http://localhost";
   const navigate = useNavigate();
 
@@ -76,7 +76,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
         <S.TableCell>
           <span>받은사람</span>
           <S.LinkReceivers>
-            {EMAILS && <Avatar text={EMAILS} />}
+            {EMAILS && <Avatar emails={EMAILS} />}
           </S.LinkReceivers>
         </S.TableCell>
       </S.TableRow>
