@@ -1,6 +1,5 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import TableBody from "./TableBody";
-import data from "components/data.json";
 import * as S from "./index.style";
 // redux
 import { useAppSelector } from "hooks/useStore";
