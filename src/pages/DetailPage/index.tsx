@@ -2,10 +2,8 @@ import React, { FC } from "react";
 import Download from "assets/icons/download.svg";
 import * as S from "./index.style";
 import { useParams } from "react-router";
-import datas from "components/data.json";
 import { printFileSize, formatDate, printRemainTime } from "utils";
 import imageDefault from "assets/icons/default.svg";
-
 import { useAppSelector } from "hooks/useStore";
 import * as selector from "redux/selectors";
 
@@ -13,30 +11,28 @@ const DetailPage: FC = () => {
   const { id } = useParams();
   const file = id && useAppSelector(selector.fileSelectorById(id));
 
-  console.log(file);
-
-  const index = datas.findIndex((data) => data.key === id);
-  const data = datas[index];
   const isExpired =
-    printRemainTime(data.expires_at) === "만료됨" ? true : false;
+    file&&printRemainTime(file.expires_at) === "만료됨" ? true : false;
 
   const checkImage = (path: string) => {
     return path.substring(path.length - 3) !== "svg" ? path : imageDefault;
   };
   const sendBtnHandler = () => {
     alert("성공적으로 다운로드가 됐습니다! ");
-  };
+  }
 
   return (
     <>
+    {file&&
+    <>
       <S.Header>
         <S.LinkInfo>
-          <S.Title>{data.summary}</S.Title>
+          <S.Title>{file.summary}</S.Title>
           {isExpired ? (
-            <S.Url isExpired={isExpired}>{data.thumbnailUrl}</S.Url>
+            <S.Url isExpired={isExpired}>{file.thumbnailUrl}</S.Url>
           ) : (
-            <S.Url href={data.thumbnailUrl} isExpired={isExpired}>
-              {data.thumbnailUrl}
+            <S.Url href={file.thumbnailUrl} isExpired={isExpired}>
+              {file.thumbnailUrl}
             </S.Url>
           )}
         </S.LinkInfo>
@@ -57,25 +53,25 @@ const DetailPage: FC = () => {
         <S.Descrition>
           <S.Texts>
             <S.Top>링크 생성일</S.Top>
-            <S.Bottom>{formatDate(data.created_at)}</S.Bottom>
+            <S.Bottom>{formatDate(file.created_at)}</S.Bottom>
             <S.Top>메세지</S.Top>
-            <S.Bottom>{data.sent?.content}</S.Bottom>
+            <S.Bottom>{file.sent?.content}</S.Bottom>
             <S.Top>다운로드 횟수</S.Top>
-            <S.Bottom>{data.download_count}</S.Bottom>
+            <S.Bottom>{file.download_count}</S.Bottom>
           </S.Texts>
           <S.LinkImage>
-            <S.Image thumbnailUrl={checkImage(data.thumbnailUrl)} />
+            <S.Image thumbnailUrl={checkImage(file.thumbnailUrl)} />
           </S.LinkImage>
         </S.Descrition>
         {!isExpired && (
           <>
             <S.ListSummary>
-              <div>총 {data.count}개의 파일</div>
-              <div>{printFileSize(data.size)}</div>
+              <div>총 {file.count}개의 파일</div>
+              <div>{printFileSize(file.size)}</div>
             </S.ListSummary>
             <S.FileList>
-              {data.files &&
-                data.files.map((file) => {
+              {file.files &&
+                file.files.map((file) => {
                   return (
                     <S.FileListItem key={file.key}>
                       <S.FileItemInfo>
@@ -94,7 +90,7 @@ const DetailPage: FC = () => {
           </>
         )}
       </S.Article>
-    </>
+    </>}</>
   );
 };
 
