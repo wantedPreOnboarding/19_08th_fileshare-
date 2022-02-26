@@ -2,12 +2,11 @@ import React, { useEffect } from "react";
 import DetailPage from "pages/DetailPage";
 import LinkPage from "pages/LinkPage";
 import Container from "components/Container";
+// router
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 // redux
-import { useAppDispatch, useAppSelector } from "hooks/useStore";
+import { useAppDispatch } from "hooks/useStore";
 import { loadFileList } from "redux/slices/fileList";
-import * as selector from "redux/selectors";
 import Notification from "components/Notification/Notification";
 
 const App = () => {
@@ -16,10 +15,6 @@ const App = () => {
   useEffect(() => {
     dispatch(loadFileList());
   }, []);
-
-  const datas = useAppSelector((state) => state.fileList);
-  const data = useAppSelector(selector.selectAllFiles);
-  const file = useAppSelector(selector.fileSelectorById("7725NJHW"));
 
   return (
     <BrowserRouter>

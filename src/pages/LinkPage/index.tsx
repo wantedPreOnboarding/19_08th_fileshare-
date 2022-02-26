@@ -1,9 +1,12 @@
 import React, { FC } from "react";
 import TableBody from "./TableBody";
-import data from "components/data.json";
 import * as S from "./index.style";
-
+// redux
+import { useAppSelector } from "hooks/useStore";
+import * as selector from "redux/selectors";
 const LinkPage: FC = () => {
+  const dataList = useAppSelector(selector.selectAllFiles);
+
   return (
     <>
       <S.Title>마이 링크</S.Title>
@@ -17,7 +20,7 @@ const LinkPage: FC = () => {
             <S.TableCell>받은사람</S.TableCell>
           </S.TableRow>
         </S.TableHead>
-        {data.map((item) => {
+        {dataList.map((item) => {
           return <TableBody key={item.key} item={item} />;
         })}
       </S.Table>
