@@ -1,13 +1,17 @@
 import React, { FC } from "react";
 import Download from "assets/icons/download.svg";
+import  { ReactComponent as Delete }  from "assets/icons/trash.svg";
 import * as S from "./index.style";
 import { useParams } from "react-router";
 import { printFileSize, formatDate, printRemainTime } from "utils";
 import imageDefault from "assets/icons/default.svg";
-import { useAppSelector } from "hooks/useStore";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "hooks/useStore";
 import * as selector from "redux/selectors";
-
+import { deleteFile } from "redux/slices/fileList";
 const DetailPage: FC = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { id } = useParams();
   const file = id && useAppSelector(selector.fileSelectorById(id));
 
@@ -19,6 +23,10 @@ const DetailPage: FC = () => {
   };
   const sendBtnHandler = () => {
     alert("성공적으로 다운로드가 됐습니다! ");
+  }
+  const deleteBtnHandler=()=>{
+    id&&dispatch(deleteFile(id));
+    navigate("/");
   }
 
   return (
@@ -36,7 +44,8 @@ const DetailPage: FC = () => {
             </S.Url>
           )}
         </S.LinkInfo>
-        {!isExpired ? (
+        {/* {!isExpired ? ( */}
+          <S.BtnGroup>
           <S.DownloadButton onClick={sendBtnHandler}>
             <img
               referrerPolicy="no-referrer"
@@ -45,9 +54,12 @@ const DetailPage: FC = () => {
             />
             받기
           </S.DownloadButton>
-        ) : (
+          <S.DeleteButton onClick={deleteBtnHandler}>
+            <Delete/>
+          </S.DeleteButton></S.BtnGroup>
+        {/* ) : (
           <S.DownloadButton disabled> 만료됨</S.DownloadButton>
-        )}
+        )} */}
       </S.Header>
       <S.Article>
         <S.Descrition>
