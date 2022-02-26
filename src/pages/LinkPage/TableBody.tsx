@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   printRemainTime,
-  inputClipBoard,
+  inputClipboard,
   printFilteredUrl,
   printFileSize,
 } from "utils";
@@ -50,7 +50,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
                 expiration={expiration}
                 onClick={(event) => {
                   event.stopPropagation();
-                  expiration && inputClipBoard(`${URL_ADDRESS}${item.key}`);
+                  expiration && inputClipboard(`${URL_ADDRESS}${item.key}`);
                 }}
               >
                 {printFilteredUrl(item.key, item.expires_at)}
