@@ -9,21 +9,13 @@ const Avatar = ({ emails, ...rest }: Props) => {
   return (
     <>
       {emails &&
-        emails.map((item, index) => {
-          return (
-            <>
-              {index < 5 && (
-                <>
-                  <Base key={index} {...rest}>
-                    <Text num={index} data-text={item}>
-                      {item.substring(0, 1)}
-                    </Text>
-                  </Base>
-                </>
-              )}
-            </>
-          );
-        })}
+        emails.slice(0, 5).map((item, index) => (
+          <Base key={index} {...rest}>
+            <Text num={index} data-text={item}>
+              {item.substring(0, 1)}
+            </Text>
+          </Base>
+        ))}
       <span>{emails.length > 5 ? `+${emails.length - 5}` : ""}</span>
     </>
   );
