@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import theme from "styles/theme";
-import {thumbnailUrlProps} from "../DetailPage/index.type"
-import imageDefault from "assets/icons/default.svg";
+
 export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.grey700};
   letter-spacing: -0.62px;
@@ -114,15 +113,6 @@ export const LinkImage = styled.div`
   }
 `;
 
-export const Thumbnail=styled.span<thumbnailUrlProps>`
-  width: 100%;
-  display: inline-block;
-  background-image: ${props => `url(${props.thumbnailUrl})`},url(${imageDefault});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding-bottom: 100%;
-`
 
 export const LinkTexts = styled.div`
   display: flex;
