@@ -1,5 +1,5 @@
 const endPoints = {
-  links: "/homeworks/links",
+  links: "/https://storage-fe.fastraffic.io/homeworks/links",
 };
 
 export { endPoints };
