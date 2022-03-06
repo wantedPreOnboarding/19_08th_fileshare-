@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Button from "components/Button";
-import {thumbnailUrlProps} from "./index.type"
-import imageDefault from "assets/icons/default.svg";
+import {expiredProps} from "./index.type"
 
 export const Header = styled.header`
   display: flex;
@@ -27,7 +26,7 @@ export const Title = styled.h3`
   font-size: 20px;
 `;
 
-export const Url = styled.a<thumbnailUrlProps>`
+export const Url = styled.a<expiredProps>`
   overflow: hidden;
   display: block;
   white-space: nowrap;
@@ -121,23 +120,16 @@ export const LinkImage = styled.div`
   border-radius: 4px;
   justify-content: center;
   background:${({ theme }) => theme.colors.grey50};
-
-
+  img{
+    width: 100%;
+  }
   @media (max-width: 768px) {
     margin-bottom: 32px;
     max-width: 100%;
   }
 `;
 
-export const Image = styled.span<thumbnailUrlProps>`
-  width: 100%;
-  display: inline-block;
-  background-image: ${props => `url(${props.thumbnailUrl})`},url(${imageDefault});
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
-  padding-bottom: 100%;
-`;
+
 
 export const ListSummary = styled.div`
   display: flex;
@@ -172,19 +164,6 @@ export const FileListItem = styled.li`
   align-items: center;
 `;
 
-export const FileItemImage = styled.span<thumbnailUrlProps>`
-    background-image: ${props => `url(${props.thumbnailUrl})`},url(${imageDefault});
-    width: 40px;
-    height: 40px;
-    min-width:40px;
-    min-height:40px;
-    margin-right: 12px;
-    display: inline-block;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center center;
-    `;
-
 export const FileItemInfo = styled.div`
     max-width: 70%;
     display: flex;
@@ -195,6 +174,14 @@ export const FileItemInfo = styled.div`
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+    }
+    img{
+      width: 40px;
+      height: 40px;
+      min-width:40px;
+      min-height:40px;
+      margin-right: 12px;
+      display: inline-block;
     }
 `;
 

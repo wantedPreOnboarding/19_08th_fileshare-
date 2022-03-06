@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Avatar from "components/Avatar";
 import * as S from "./index.style";
 import useInterval from "hooks/useInterval";
+import imageDefault from "assets/icons/default.svg";
 //router
 import { useNavigate } from "react-router-dom";
 //utils
@@ -40,6 +41,10 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
     gap > 0 ? setExpiration(true) : setExpiration(false);
   }, [updateTime]);
 
+  const errorHandler= (event:React.SyntheticEvent<HTMLImageElement, Event>)=>{
+    const target = event.target as HTMLImageElement
+    target.src=imageDefault;
+  }
   return (
     <S.TableBody
       role="button"
@@ -51,7 +56,7 @@ const TableBody = ({ item }: PropsWithChildren<dataProps>) => {
         <S.TableCell>
           <S.LinkInfo>
             <S.LinkImage>
-              <S.Thumbnail thumbnailUrl={item.thumbnailUrl} />
+            <img src={item.thumbnailUrl} onError={(event)=>errorHandler(event)}/>
             </S.LinkImage>
             <S.LinkTexts>
               <S.LinkTitle>{item.summary}</S.LinkTitle>

@@ -3,6 +3,7 @@ import React, { FC } from "react";
 import * as S from "./index.style";
 import Download from "assets/icons/download.svg";
 import { ReactComponent as Delete }  from "assets/icons/trash.svg";
+import imageDefault from "assets/icons/default.svg";
 //utils
 import { printFileSize, formatDate, printRemainTime } from "utils";
 //router
@@ -13,15 +14,17 @@ import { useAppDispatch, useAppSelector } from "hooks/useStore";
 import * as selector from "redux/selectors";
 import { deleteFile } from "redux/slices/fileList";
 
+
+
 const DetailPage: FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const { id } = useParams();
-  const file = id && useAppSelector(selector.fileSelectorById(id));
+  const data = id && useAppSelector(selector.fileSelectorById(id));
 
   const isExpired =
-    file&&printRemainTime(file.expires_at) === "만료됨" ? true : false;
+  data&&printRemainTime(data.expires_at) === "만료됨" ? true : false;
 
   const sendBtnHandler = () => {
     alert("성공적으로 다운로드가 됐습니다! ");
@@ -32,18 +35,23 @@ const DetailPage: FC = () => {
     navigate("/");
   }
 
+  const errorHandler= (event:React.SyntheticEvent<HTMLImageElement, Event>)=>{
+    const target = event.target as HTMLImageElement
+    target.src=imageDefault;
+  }
+
   return (
     <>
-    {file&&
+    {data&&
     <>
       <S.Header>
         <S.LinkInfo>
-          <S.Title>{file.summary}</S.Title>
+          <S.Title>{data.summary}</S.Title>
           {isExpired ? (
-            <S.Url isExpired={isExpired}>{file.thumbnailUrl}</S.Url>
+            <S.Url isExpired={isExpired}>{data.thumbnailUrl}</S.Url>
           ) : (
-            <S.Url href={file.thumbnailUrl} isExpired={isExpired}>
-              {file.thumbnailUrl}
+            <S.Url href={data.thumbnailUrl} isExpired={isExpired}>
+              {data.thumbnailUrl}
             </S.Url>
           )}
         </S.LinkInfo>
@@ -68,31 +76,29 @@ const DetailPage: FC = () => {
         <S.Descrition>
           <S.Texts>
             <S.Top>링크 생성일</S.Top>
-            <S.Bottom>{formatDate(file.created_at)}</S.Bottom>
+            <S.Bottom>{formatDate(data.created_at)}</S.Bottom>
             <S.Top>메세지</S.Top>
-            <S.Bottom>{file.sent?.content}</S.Bottom>
+            <S.Bottom>{data.sent?.content}</S.Bottom>
             <S.Top>다운로드 횟수</S.Top>
-            <S.Bottom>{file.download_count}</S.Bottom>
+            <S.Bottom>{data.download_count}</S.Bottom>
           </S.Texts>
           <S.LinkImage>
-            <S.Image thumbnailUrl={file.thumbnailUrl} />
+            <img src={data.thumbnailUrl} onError={(event)=>errorHandler(event)}/>
           </S.LinkImage>
         </S.Descrition>
         {!isExpired && (
           <>
             <S.ListSummary>
-              <div>총 {file.count}개의 파일</div>
-              <div>{printFileSize(file.size)}</div>
+              <div>총 {data.count}개의 파일</div>
+              <div>{printFileSize(data.size)}</div>
             </S.ListSummary>
             <S.FileList>
-              {file.files &&
-                file.files.map((file) => {
+              {data.files &&
+                data.files.map((file) => {
                   return (
                     <S.FileListItem key={file.key}>
                       <S.FileItemInfo>
-                        <S.FileItemImage
-                          thumbnailUrl={file.thumbnailUrl}
-                        />
+                      <img src={file.thumbnailUrl} onError={(event)=>errorHandler(event)}/>
                         <span>{file.name}</span>
                       </S.FileItemInfo>
                       <S.FileItemSize>
