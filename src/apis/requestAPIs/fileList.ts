@@ -5,4 +5,8 @@ import requests from "../core";
 export const get = {
   fileList: () =>
     requests.get<FilesAPI[]>(endPoints.links).catch(() => console.log("error")),
+  downloadFile: (filePath: string) =>
+    requests.get<Blob>("/" + filePath, {
+      responseType: "blob",
+    }),
 };
