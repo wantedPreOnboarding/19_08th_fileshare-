@@ -6,3 +6,4 @@ export { default as printFileSize } from "./printFileSize";
 export { default as printFilteredUrl } from "./printFilteredUrl";
 export { default as printRemainTime } from "./printRemainTime";
 export { default as tensDigit } from "./tensDigit";
+export { default as fileDownload } from "./fileDownload";
