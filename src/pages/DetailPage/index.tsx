@@ -31,14 +31,12 @@ const DetailPage: FC = () => {
     data && printRemainTime(data.expires_at) === "만료됨" ? true : false;
 
   const downloadHandler = (url: string, fileName: string) => {
-    const a = document.createElement("a");
-
     get
       .downloadFile(url)
       .then((res) => URL.createObjectURL(res))
       .then((imageURL) => {
         fileDownload(imageURL, fileName);
-        alert("성공적으로 다운로드가 됐습니다! ");
+        alert("성공적으로 다운로드 됐습니다! ");
       })
       .catch((err) => {
         console.error(err);
