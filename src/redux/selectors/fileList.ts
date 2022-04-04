@@ -5,7 +5,7 @@ import { RootState } from "redux/store";
 const getData = (state: RootState) => state.fileList.fileList.data;
 
 export const selectAllFiles = createSelector(getData, (state) =>
-  Object.values(state || {}).map((value) => value)
+  Object.values(state || {})
 );
 
 export const fileSelectorById = (key: string) =>
